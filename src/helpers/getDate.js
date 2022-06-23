@@ -1,0 +1,1 @@
+export const Date = new Date().toString()

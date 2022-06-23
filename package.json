@@ -1,0 +1,30 @@
+{
+  "name": "PROYECTOFINAL2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --inspect ./app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cluster": "^0.7.7",
+    "dotenv": "^16.0.0",
+    "ejs": "^3.1.8",
+    "express": "^4.17.3",
+    "express-session": "^1.17.3",
+    "minimist": "^1.2.6",
+    "mongoose": "^6.3.1",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
+    "pino": "^8.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.13.0"
+  }
+}
