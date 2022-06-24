@@ -10,7 +10,9 @@ export const createCart = async (req, res, next) => {
   try {
     const dbResp = await createCartDB();
     if (dbResp) {
-      res.send({ id: dbResp });
+      req.session.cart_id=dbResp  
+      //esta ruta /api/cart es la que me permitira ver los productos una vez creado el carrito
+      res.send('<h2>carrito creado con exito <a href="/productos">comenzar a comprar</a></h2>');
     } else {
       throw dbResp;
     }
@@ -69,8 +71,8 @@ export const deleteCart = (req, res, next) => {
 
 export const removeProductOnCart = async (req, res, next) => {
   try {
-    const  cartId  = req.params.id;
-    const  productId  = req.params.productId;
+    const cartId = req.params.id;
+    const productId = req.params.productId;
     const dbRes = await deleteCartProductDB(cartId, productId);
     if (dbRes) {
       res.send(

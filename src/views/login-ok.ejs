@@ -7,19 +7,18 @@
     <title>loged ejs</title>
   </head>
   <body>
-   
-    <section>
-      <h2>Hola usuario: <%= user %></h2>
-      <button>
-        <a href="/logout">Deslogear</a>
-      </button>
-    </section>
-    <section>
-        <h2>Ver productos disponibles</h2>
-        <button>
-          <a href="/productos">Productos</a>
-        </button>
-    </section>
-    
+    <div>
+      <h2>Hola usuario: <%= user.firstName %></h2>
+      <img src=<%= user.avatar %> alt="">
+    </div>
+    <div>
+      <h3>para  ver los productos,crea tu carrito!</h3>
+      <a href="/api/cart">Crear carrito</a> 
+    </div>
+    <div>
+      <h5>deslogearse</h5>
+      <a href="/logout"></a>
+  </div>
+
   </body>
 </html>

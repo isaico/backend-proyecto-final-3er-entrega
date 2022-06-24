@@ -10,11 +10,13 @@ import {
 export const getProducts = async (req, res, next) => {
   try {
     const products = await readAllProductsDB();
+    req.session.products=products;
     res.send(products);
   } catch (error) {
     next(error);
   }
 };
+
 
 export const getProductById=async(req,res,next)=>{
   try {

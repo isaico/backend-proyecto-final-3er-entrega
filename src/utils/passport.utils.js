@@ -9,16 +9,16 @@ passport.use(
       {
         passReqToCallback: true,
       },
-      async (req, email, password, done) => {
+      async (req, username, password, done) => {
         try {
-          const userExists = await UserModel.findOne({ email });
+          const userExists = await UserModel.findOne({ email:username });
           if (userExists) {
             console.log("Usuario existe");
             return done(null, false);
           }
           console.log("el usuario no existe en la base de datos")
           const newUser = {
-            email,
+            email:username,
             password: bcrypt.hashSync(password, bcrypt.genSaltSync(10), null),
             firstName: req.body.firstName,
             lastName: req.body.lastName,
