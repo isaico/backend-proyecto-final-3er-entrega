@@ -25,10 +25,17 @@
                     <h3>
                         <%= prod.stock %>
                     </h3>
-                    <a href="/api/cart/<%= cart_id %>/products/<%= prod.id %>">agregar al carrito</a>
+                    <form action="/api/cart/<%= cart_id %>/products/<%= prod.id %>" method="post">
+                        <input type="number" name="amount" id="amount">
+                        <button type="submit">agregar al carrito</button>
+                    </form>
+                    <!-- <a href="/api/cart/<%= cart_id %>/products/<%= prod.id %>">agregar al carrito</a> -->
                 </li>
             <% }) %>
         </ul>
+        <div>
+            <a href="/api/cart/<%= cart_id %>/products">Terminar compra</a>
+        </div>
     </div>
 </body>
 </html>

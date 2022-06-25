@@ -9,7 +9,7 @@ export const getCartDB = async (cartId) => {
     if (resp.length) {
       const productos = resp.map((item) => {
         return {
-          prodId: item.product_id,
+          prodId: item.product._id,
           nombre: item.product.nombre,
           descripcion: item.product.descripcion,
           precio: item.product.precio,

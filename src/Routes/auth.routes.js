@@ -23,6 +23,6 @@ userRouter.get('/login',getLogin)
 userRouter.get('/faillogin',getFailLogin)
 userRouter.post('/login', passport.authenticate("login", { failureRedirect: "/faillogin" }),postLogin)
 /* -------------------------------- protected ------------------------------- */
-userRouter.get('/data',checkAuthentication,getData)
+// userRouter.get('/data',checkAuthentication,getData)
 userRouter.get('/loged/products',checkAuthentication,getData)
 userRouter.get('/logout',checkAuthentication,logout)

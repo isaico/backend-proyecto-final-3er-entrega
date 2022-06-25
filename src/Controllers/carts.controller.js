@@ -5,6 +5,8 @@ import {
   deleteCartProductDB,
   createCartDB,
 } from '../modules/index.js';
+import {sendMailGmail} from '../utils/nodemailer.utils.js'
+import { sendWsp } from '../utils/twilio.utils.js';
 
 export const createCart = async (req, res, next) => {
   try {
@@ -26,7 +28,23 @@ export const getCart = async (req, res, next) => {
     const cartId = req.params.id;
     const cart = await getCartDB(cartId);
     if (cart) {
-      res.send(cart);
+      const user = req.session.user
+      //mail al admin 
+      const mailOptions = {
+        from: process.env.USER,
+        to: [process.env.ADMIN_GMAIL, process.env.USER],
+        subject: `Nuevo pedido de ${user.firstName} ${user.lastName},mail: ${user.email}`,
+        text: `nuevo pedido del cart id: ${cart.id} con los siguientes productos: ${cart.productos}`
+      };
+      sendMailGmail(mailOptions)
+      //wsp al admin
+      const message = {
+        body: `nuevo pedido de ${user.firstName} ${user.lastName} mail:${user.email}`,
+        from: process.env.TWILIO_WSP,
+        to: 'whatsapp:+549'+`${user.phone}`,
+      };
+      sendWsp(message)
+      res.send(`pedido realizado con exito,  N° de pedido: ${cart.id} de los productos ${cart.productos}`);
     } else {
       const error = new Error(`El carrito con id ${cartId} no existe`);
       error.code = 'CART_NOT_FOUND';
